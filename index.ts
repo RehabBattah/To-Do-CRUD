@@ -31,9 +31,7 @@ const h3Bottom = document.createElement("h3") as HTMLHeadingElement
 h3Bottom.innerHTML = 'Lists of your todo :- '
 divBottom.appendChild(h3Bottom);
 
-
 let arrItems: string[] = [];
-
 addBtn.addEventListener("click", () => {
     if (toDoInput.value .trim() != "") {
     arrItems.push(toDoInput.value)
@@ -53,15 +51,11 @@ if (storedItems != null) {
 }
 
 function displayListItems(items: string[]) {
-    // console.log("items", items);
     divBottom.innerHTML = '';
-
     items.forEach((item, index) => {
-        // console.log("item",item ,'indexxxx' , index);
-
         // div 
         const divItem = document.createElement("div") as HTMLDivElement
-        divItem.id = 'todo-item'
+        divItem.id = `todo-item-${index}`
         divBottom.appendChild(divItem);
 
         // label 
@@ -105,7 +99,6 @@ function displayListItems(items: string[]) {
         })
 
         const saveInput = document.createElement("input") as HTMLInputElement;
-
         updateBtn.addEventListener("click", () => {
             if (updateBtn.innerHTML === 'Update') {
                 // console.log("yes");
@@ -121,7 +114,6 @@ function displayListItems(items: string[]) {
                 delBtn.style.display = 'none';
 
             } else {
-                // console.log("noo");
                 updateBtn.innerHTML = 'Update';
                 updateBtn.classList.toggle('btn-save');
                 itemLabelSpan.style.display = 'inline';
@@ -139,11 +131,8 @@ function displayListItems(items: string[]) {
                     displayListItems(arrItems);
                 }
             }
-
         });
-
     });
-
 };
 
 function delateItem(delIndex: number) {
@@ -152,31 +141,3 @@ function delateItem(delIndex: number) {
     // console.log(arrItems);
     displayListItems(arrItems)
 }
-
-
-
-// localStorage.removeItem('ToDo Items');
-
-
-
-// <section class="container">
-// <div id="topOfTodo">
-//     <h1>TODO LIST</h1>
-//     <input type="text" name="" id="toDoInput" placeholder="write your todo list here...">
-//     <button id="addBtn" class="btn">Add</button>
-// </div>
-// <div id="bodyOfTodo">
-//     <h3>Lists of your todo:</h3>
-//     <div id="todo-item">
-//         <label for="todo-text">
-//             <input type="checkbox" id="todo-text">
-//             <span>Shopping</span>
-//         </label>
-//         <div class="item-actions">
-//             <button class="btn btn-update">Update</button>
-//             <button class="btn btn-delete">Delete</button>
-//         </div>
-//     </div>
-// </div>
-//  
-// </section>
